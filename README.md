@@ -71,18 +71,17 @@ CreditSetu is architected as an integrated three-tier platform:
 
 #### 1. Start Python FastAPI ML Analytics Service (Port 8000)
 ```powershell
-cd c:\ExpectoProgramum\credexplain-ml-service
-# Using the installed Python 3.11 runtime:
-& "C:\Users\HP\AppData\Local\Programs\Python\Python311\python.exe" -m uvicorn main:app --host 0.0.0.0 --port 8000
+cd credexplain-ml-service
+pip install -r requirements.txt
+python -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 *Health Check*: `http://localhost:8000/api/ml/health`  
 *API Docs*: `http://localhost:8000/docs`
 
 #### 2. Start Java Spring Boot Core Backend (Port 8080)
 ```powershell
-cd c:\ExpectoProgramum\credexplain-core-backend
-$env:JAVA_HOME = "C:\Users\HP\AppData\Local\Programs\Java\jdk-17.0.10+7"
-& "C:\Users\HP\AppData\Local\Programs\Java\jdk-17.0.10+7\bin\java.exe" -jar target\credexplain-core-backend-1.0.0-SNAPSHOT.jar
+cd credexplain-core-backend
+mvn clean spring-boot:run
 ```
 *H2 Database Console*: `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:credexplaindb`)  
 *API Base*: `http://localhost:8080/api`
